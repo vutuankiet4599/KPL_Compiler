@@ -1,0 +1,6 @@
+Program Example1; (* Example 1 *)
+Begin
+I := A > B ? A : B;
+(J, K) := (1,2,3);
+M(.1,2,3.)(.1.) := 0;
+End. (* Example 1 *)
