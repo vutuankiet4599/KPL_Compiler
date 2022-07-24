@@ -1,0 +1,9 @@
+Program Example2; (* Factorial *)
+   
+Var 
+    i : integer;
+
+Begin
+    i := 2**2;
+    CALL WRITEI(i);
+End. (* Factorial *)
