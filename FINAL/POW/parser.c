@@ -757,43 +757,30 @@ Type* compileExpression3(Type* argType1) {
   return resultType;
 }
 
+// Term ::= Factor2 Term2
+/*
+Term2 ::= SB_TIMES Factor2 Term2
+Term2 ::= SB_SLASH Factor2 Term2
+Term2 ::= eps
+Factor2 ::= Factor Fator3
+Factor3 ::= SB_POW Factor
+Factor3 ::= eps
+*/
+
 Type* compileTerm(void) {
   Type* type;
-  type = compileFactor();
+  type = compileFactor2();
   type = compileTerm2(type);
 
   return type;
 }
 
+
 Type* compileTerm2(Type* argType1) {
   Type* argType2;
   Type* resultType;
-  CodeAddress beginPow;
-  Instruction *fjInst;
 
   switch (lookAhead->tokenType) {
-  case SB_POW:
-  	
-  	eat(SB_POW);
-  	genCV();
-  	
-  	checkIntType(argType1);
-  	argType2 = compileFactor();
-  	checkIntType(argType2);
-  	
-  	genLC(1);
-  	genSB();
-  	beginPow = getCurrentCodeAddress();
-  	fjInst = genFJ(DC_VALUE);
-  	genDCT(1);
-  	genML();
-  	genINT(3);
-  	genSB();
-  	genJ(beginPow);
-  	updateFJ(fjInst, getCurrentCodeAddress());
-    genDCT(1);
-  	resultType = compileTerm2(argType1);
-  	break;
   case SB_TIMES:
     eat(SB_TIMES);
     checkIntType(argType1);
@@ -838,6 +825,23 @@ Type* compileTerm2(Type* argType1) {
     error(ERR_INVALID_TERM, lookAhead->lineNo, lookAhead->colNo);
   }
   return resultType;
+}
+
+Type* compileFactor2(){
+	Type *type;
+	type = compileFactor();
+	compileFactor3();
+	return type;
+}
+
+void compileFactor3(){
+	Type* type;
+	while(lookAhead->tokenType == SB_POW){
+		eat(SB_POW);
+		type = compileFactor();
+		checkIntType(type);
+		genPW();
+	}
 }
 
 Type* compileFactor(void) {

@@ -183,6 +183,10 @@ void genDV(void) {
   emitDV(codeBlock);
 }
 
+void genPW(void) {
+	emitPW(codeBlock);
+}
+
 void genNEG(void) {
   emitNEG(codeBlock);
 }

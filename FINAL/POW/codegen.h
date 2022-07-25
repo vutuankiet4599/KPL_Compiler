@@ -84,6 +84,7 @@ void genGT(void);
 void genGE(void);
 void genLT(void);
 void genLE(void);
+void genPW(void);
 
 void updateJ(Instruction* jmp, CodeAddress label);
 void updateFJ(Instruction* jmp, CodeAddress label);
