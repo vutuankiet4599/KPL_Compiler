@@ -1,0 +1,14 @@
+Program Example2; %% Factorial *)
+   
+Var j : integer;
+    i : integer;
+
+Begin
+    i := 5;
+    j := 9;
+    --j;
+    i++;
+    
+    call writei(i);
+    call writei(j);
+End. (* Factorial *)
