@@ -1,0 +1,8 @@
+Program Example2; (* Factorial *)
+   
+Var i : integer;
+
+Begin
+    i := 1 < 9 ? 1 : 0;
+    call writei(i);
+End. (* Factorial *)
