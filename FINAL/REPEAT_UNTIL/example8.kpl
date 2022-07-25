@@ -1,0 +1,13 @@
+Program Example2; (* Factorial *)
+   
+Var j : integer;
+    i : integer;
+
+Begin
+    i := 5;
+    repeat
+        call writei(i);
+        call writeln;
+        i := i - 1;
+    until i <= 0;
+End. (* Factorial *)
